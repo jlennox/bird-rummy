@@ -1,0 +1,7 @@
+- Avoid sending birds to Heaven. Dead birds make me sad.
+- Birds are wild animals. These are not the player's pets. They want to and should move between play areas frequently.
+- Birds should move in and out of is the forest with less restrictions than the discard pile in rummy.
+- Never have the ability of looking at opponent's hand. A big aspect of rummy is secrecy.
+- Considering having multiple cards for the same bird. IE, have 2 types of scrub jays, and the player can choice the abilities on any of the ones being played or in their nest.
+- 60'ish card deck should provide for reasonable game length, not need to dig for duplicate birds for too long, and not over tax players memory.
+- The games are intended to be casually competitive and not much longer than a normal rummy game, 10 - 15 minutes.
