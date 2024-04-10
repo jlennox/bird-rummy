@@ -2,7 +2,9 @@
 <html>
     <script src="out.js"></script>
 	<head><style>
-		* { box-sizing: border-box; }
+		* { box-sizing: border-box; margin: 0; padding: 0; }
+
+		h1, h2, h3 { padding: 5px 0; }
 
 		:root {
 			--outline: 1px;
@@ -25,17 +27,53 @@
 
 			display: inline-block;
 		}
-		xxx.card + .card { border-left: none; }
 
-		.title {
-			writing-mode: tb-rl;
-			text-orientation: sideways-right;
-			font-size: 2em;
-			float: left;
-			display: inline-block;
-			height: 100%;
+		.card h2 {
+			margin: 0; padding: 0;
+			border: 1px solid #AAA;
+			border-radius: 5em;
+			font-size: 1.3em;
 			text-indent: .2em;
+			white-space: nowrap;
 		}
+		.card p {
+			margin: .5em .5em 0 .5em;
+			font-size: 1em;
+		}
+		.card em {
+			font-family: "monospace";
+		}
+		.card .ability-cost {
+			font-size: 1em;
+			font-weight: bold;
+			display: inline-block;
+			vertical-align: middle;
+			line-height: 1em;
+			width: 1em;
+			height: 1em;
+			text-align: center;
+			border: 1px solid #555;
+			border-radius: 100%;
+		}
+		.card .type {
+			font-weight: bold;
+			text-align: center;
+			padding-bottom: 0;
+		}
+		.card .value {
+			position: absolute;
+			background-color: white;
+			right: 5px;
+			top: 5px;
+			width: 2em;
+			height: 2em;
+			border: 1px solid #555;
+			border-radius: 100%;
+			text-align: center;
+			line-height: 2em;
+			vertical-align: middle;
+		}
+
 		.cost {
 			float: right;
 			font-size: .8em;

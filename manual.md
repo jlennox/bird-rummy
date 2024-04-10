@@ -8,7 +8,7 @@ Terms
 - **Nest**: The player's playfield. Each player has a nest. Players play their cards into their nest.
 - **Forest**: The shared discard pile.
 - **Deck**: The undrawn card pile.
-- **Heaven**: The cards which have been removed from the game.
+- **Heaven**: The card pile which have been removed from the game.
 - **Hand**: The cards an opponent has drawn. The hand should not be shown between players.
 - **Group**: Is all birds of a single type in a single nest. **TODO:** Rename to Flock?
 - **May**: When an ability or effects says may, ie, "you may," then it is optional.
