@@ -212,6 +212,7 @@ class Card {
         return DOM.element("div", "card", `
             <h2>${DOM.escape(this.title)}</h2>
             <div class="type">${DOM.escape(this.type)}</div>
+            <div class="image" style="background-image: url('images/black_white/${encodeURI(this.title)}.webp');"></div>
             <div class="body">${this.text}</div>
             ${this.value == null ? "" : `<div class="value">${this.value}</div>`}
         `);

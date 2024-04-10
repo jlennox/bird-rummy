@@ -11,3 +11,7 @@ Intended as a printed card game for 2 players. Any computerized play that is imp
 TODO:
 - Scoring and end game are still up in the air.
 - Not all cards are finished.
+
+Licensing:
+- The game design and cards do not have a listed license at this time, but for the time being, they are free to be reproduced.
+- The images were created by Dall-E 3 from openai.
