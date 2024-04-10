@@ -41,9 +41,9 @@ const cardDefinitions = [
         title: "Nesting Materials",
         type: "Effect",
         text: `
-            *Nest*: Place on any bird group in your nest. That bird may no longer be targeted by effects or abilities controlled by an opponent.
+            Place on any bird group in your nest. That bird may no longer be the target of effects or abilities controlled by an opponent.
 
-            This effect may be played in response to an opponent's effect or ability, causing it to have no effect.
+            This effect may be played in response to an effect or ability, causing it to have no effect.
 
             If all birds in targeted bird group are removed from your nest, place ~ in the Forest.`
         // define "causing _it_" better?
@@ -212,7 +212,7 @@ class Card {
         return DOM.element("div", "card", `
             <h2>${DOM.escape(this.title)}</h2>
             <div class="type">${DOM.escape(this.type)}</div>
-            <div class="image" style="background-image: url('images/black_white/${encodeURI(this.title)}.webp');"></div>
+            <div class="image" style="background-image: url('images/black_white/${encodeURI(this.title)}.png');"></div>
             <div class="body">${this.text}</div>
             ${this.value == null ? "" : `<div class="value">${this.value}</div>`}
         `);

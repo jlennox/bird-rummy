@@ -32,6 +32,8 @@ Turn structure
     - If taking from the forest:
         - Player must take at least 2 cards.
         - Player must take sequentially from the top. IE, you can not skip over the top card and take two. Instead the top three would need to be taken.
+        - The bottom most card taken must be played this turn.
+        - TODO: Should the bottom most card be required to be a bird?
 1. **Main phase.** Player may play any number of birds, effects, or resources in any order.
 1. **Discard phase.** The player must discard a card. If they can not, then the game continues as normal.
 1. The turn is passed to the other player.

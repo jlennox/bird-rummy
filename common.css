@@ -17,7 +17,7 @@ h1, h2, h3 { padding: 5px 0; }
 	position: relative;
 	width: var(--width);
 	height: 3.4in;
-	border: var(--outline) dashed #AAA;
+	border: var(--outline) dashed #DDD;
 	background-repeat: no-repeat;
 	overflow: hidden;
     float: left;
@@ -91,9 +91,9 @@ h1, h2, h3 { padding: 5px 0; }
     color: #AAA;
 }
 .card .image {
-	margin-left: 1em;
+	margin: 0 1em;
 	height: 130px;
-	width: 100%;
+	width: calc(100% - 2em);
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: left center;

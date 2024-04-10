@@ -14,4 +14,4 @@ TODO:
 
 Licensing:
 - The game design and cards do not have a listed license at this time, but for the time being, they are free to be reproduced.
-- The images were created by Dall-E 3 from openai.
+- The images were created by Dall-E 3 and Midjourney.
