@@ -1,5 +1,5 @@
 "use strict";
-const definitions = [
+const cardDefinitions = [
     // == Resources
     {
         title: "Bird Bath",
@@ -74,6 +74,15 @@ const definitions = [
             Rule changes must be agreed upon by all players.
         `,
     },
+    {
+        title: "French Fries",
+        type: "Effect",
+        text: `
+            Activate the ability of any bird in any nest without paying the cost.
+
+            If the bird is in your opponent's nest, it effects them as though they activated it.
+            `,
+    },
     // == Birds
     {
         title: "Great Blue Heron",
@@ -81,7 +90,7 @@ const definitions = [
         value: 5,
         count: 2,
         text: `
-            If there is any !River! in play, Great Blue Heron's value is 10, and create twice as many ability points when played.
+            If there is any !River! in play, ~'s value is 10, and create twice as many ability points when played.
 
             (2) *Go Fish*: Look at a random card from opponent's hand. You may choose a card in your hand to exchange for the revealed card.
         `
@@ -105,7 +114,7 @@ const definitions = [
 
             *Flock*: When playing ~, you may play ~ from the Forest as though they are in your hand.
 
-            (1) *TODO*: Draw 1 card from the Forest or the deck.
+            (1) *TODO*: Draw 1 card from the Forest or the deck. (TODO: too strong?)
             (3) *TODO*
         `
     },
@@ -126,7 +135,7 @@ const definitions = [
         value: 5,
         text: `
             (1) *Investigation*: Look at the top 3 cards of the deck. Place them back in any order.
-            (2) *MORE*
+            (2) *TODO*
             `
     },
     {
@@ -218,14 +227,14 @@ class Card {
             .replaceAll(/\((\d+)\)/g, "<span class='ability-cost'>$1</span>")
             .replaceAll(/\n\s+/g, "\n")
             .replaceAll(/\n([^\n]*)/g, "<p>$1</p>"), //  TODO: Escape HTML :)
-        def.value);
+        def.type == "Bird" ? def.value : undefined);
     }
 }
 const deck = [];
-for (const def of definitions) {
+for (const def of cardDefinitions) {
     const count = def.count ?? (def.type == "Bird" ? 4 : 2);
     const card = Card.fromDefinition(def);
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < count; ++i) {
         deck.push(card);
     }
 }
@@ -234,7 +243,6 @@ class Deck {
     cards;
     constructor() {
         this.cards = deck.slice();
-        this.shuffle();
     }
     shuffle() {
         this.cards = this.cards.sort(() => Math.random() - 0.5);
@@ -310,6 +318,7 @@ class Game {
     discard = [];
     turnPhase = TurnPhase.Start;
     constructor() {
+        this.deck.shuffle();
         this.discard.push(this.deck.draw());
         this.discard.push(this.deck.draw());
         for (let i = 0; i < 5; ++i) {

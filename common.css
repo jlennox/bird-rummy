@@ -1,0 +1,138 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+h1, h2, h3 { padding: 5px 0; }
+
+:root {
+	--outline: 1px;
+	--width: 2.4in;
+	--wheel-size: 2.3in;
+	--wheel-center-x: 1.45in;
+	--wheel-center-y: calc(1.3in + 5px);
+	--wheel-center-size: .25in;
+	--fold-height: .25in;
+	--window-size: .25in;
+}
+
+.card {
+	position: relative;
+	width: var(--width);
+	height: 3.4in;
+	border: var(--outline) dashed #AAA;
+	background-repeat: no-repeat;
+	overflow: hidden;
+    float: left;
+}
+
+.card h2 {
+	margin: 0; padding: 0;
+	border: 1px solid #AAA;
+	border-radius: 5em;
+	font-size: 1.3em;
+	text-indent: .2em;
+	white-space: nowrap;
+}
+.card p {
+	margin: .5em .5em 0 .5em;
+	font-size: 1em;
+}
+.card em {
+	font-family: "monospace";
+}
+.card .ability-cost {
+	font-size: 1em;
+	font-weight: bold;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 1em;
+	width: 1em;
+	height: 1em;
+	text-align: center;
+	border: 1px solid #555;
+	border-radius: 100%;
+}
+.card .type {
+	font-weight: bold;
+	text-align: center;
+	padding-bottom: 0;
+}
+.card .value {
+	position: absolute;
+	background-color: white;
+	right: 5px;
+	top: 5px;
+	width: 2em;
+	height: 2em;
+	border: 1px solid #555;
+	border-radius: 100%;
+	text-align: center;
+	line-height: 2em;
+	vertical-align: middle;
+}
+.card .print-run-note {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: .8em;
+    font-style: italic;
+    color: #AAA;
+}
+
+.cost {
+	float: right;
+	font-size: .8em;
+	padding-bottom: 10px;
+}
+
+.title-2 {
+	font-weight: bold;
+	font-size: 1em;
+	padding: 5px 5px 0 5px;
+}
+.cost-2 {
+	float: right;
+}
+
+.type {
+	padding: 5px;
+}
+
+.oracle {
+	white-space: pre-wrap;
+}
+
+.pt {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+.circle {
+	border: 1px solid lightgrey;
+	border-radius: 50%;
+	width: 1em;
+	height: 1em;
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 1em;
+	text-indent: 0;
+}
+
+.page {
+    height: 11in;
+    width: 8.5in;
+}
+
+.page-break {
+	page-break-after: always;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+@media screen {
+	.page-break + .page-break {
+		margin-top: 20px;
+	}
+}

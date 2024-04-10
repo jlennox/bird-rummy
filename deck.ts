@@ -1,29 +1,22 @@
-interface ICardDefinitionBase {
-    title: string;
-    type: "Resource" | "Effect" | "Bird";
-    text: string;
-    count?: number;
-    value?: number;
+interface IGenericCardDefinition {
+    readonly title: string;
+    readonly type: "Resource" | "Effect" | "Bird";
+    readonly text: string;
+    readonly count?: number;
 }
 
-interface IResourceEffectCardDefinition extends ICardDefinitionBase {
-    title: string;
-    type: "Resource" | "Effect";
-    text: string;
-    count?: number;
+interface IResourceEffectCardDefinition extends IGenericCardDefinition {
+    readonly type: "Resource" | "Effect";
 }
 
-interface IBirdCardDefinition extends ICardDefinitionBase {
-    title: string;
-    type: "Bird";
-    text: string;
-    count?: number;
-    value: number;
+interface IBirdCardDefinition extends IGenericCardDefinition {
+    readonly type: "Bird";
+    readonly value: number;
 }
 
 type ICardDefinition = IResourceEffectCardDefinition | IBirdCardDefinition;
 
-const definitions: readonly ICardDefinition[] = [
+const cardDefinitions: readonly ICardDefinition[] = [
     // == Resources
     {
         title: "Bird Bath",
@@ -108,6 +101,16 @@ const definitions: readonly ICardDefinition[] = [
         `,
     },
 
+    {
+        title: "French Fries",
+        type: "Effect",
+        text: `
+            Activate the ability of any bird in any nest without paying the cost.
+
+            If the bird is in your opponent's nest, it effects them as though they activated it.
+            `,
+    },
+
     // == Birds
 
     {
@@ -116,7 +119,7 @@ const definitions: readonly ICardDefinition[] = [
         value: 5,
         count: 2,
         text: `
-            If there is any !River! in play, Great Blue Heron's value is 10, and create twice as many ability points when played.
+            If there is any !River! in play, ~'s value is 10, and create twice as many ability points when played.
 
             (2) *Go Fish*: Look at a random card from opponent's hand. You may choose a card in your hand to exchange for the revealed card.
         `
@@ -142,7 +145,7 @@ const definitions: readonly ICardDefinition[] = [
 
             *Flock*: When playing ~, you may play ~ from the Forest as though they are in your hand.
 
-            (1) *TODO*: Draw 1 card from the Forest or the deck.
+            (1) *TODO*: Draw 1 card from the Forest or the deck. (TODO: too strong?)
             (3) *TODO*
         `
     },
@@ -165,7 +168,7 @@ const definitions: readonly ICardDefinition[] = [
         value: 5,
         text: `
             (1) *Investigation*: Look at the top 3 cards of the deck. Place them back in any order.
-            (2) *MORE*
+            (2) *TODO*
             `
     },
 
@@ -261,16 +264,16 @@ class Card {
                 .replaceAll(/\((\d+)\)/g, "<span class='ability-cost'>$1</span>")
                 .replaceAll(/\n\s+/g, "\n")
                 .replaceAll(/\n([^\n]*)/g, "<p>$1</p>"), //  TODO: Escape HTML :)
-            def.value);
+            def.type == "Bird" ? def.value : undefined);
     }
 }
 
 const deck: Card[] = [];
 
-for (const def of definitions) {
+for (const def of cardDefinitions) {
     const count = def.count ?? (def.type == "Bird" ? 4 : 2);
     const card = Card.fromDefinition(def);
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < count; ++i) {
         deck.push(card);
     }
 }
@@ -282,7 +285,6 @@ class Deck {
 
     constructor() {
         this.cards = deck.slice();
-        this.shuffle();
     }
 
     public shuffle(): void {
@@ -372,6 +374,8 @@ class Game {
     public turnPhase: TurnPhase = TurnPhase.Start;
 
     constructor() {
+        this.deck.shuffle();
+
         this.discard.push(this.deck.draw());
         this.discard.push(this.deck.draw());
 
