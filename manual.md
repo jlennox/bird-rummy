@@ -26,7 +26,8 @@ Game structure
 Turn structure
 ---
 1. **Start phase.** "Start of turn" effects trigger.
-1. **Draw phase.** Player may decide to draw 2 from the deck. Or take from the forest.
+1. **Draw phase.** Player may decide to draw 2 from the deck. Or take from the forest. But one or the other must be done.
+    - If this is the first turn of the game, then only one card is drawn. (TODO: Unneeded complexity?)
     - If this would overdraw the deck, then the forest should be shuffled and used as th deck.
         - If the forst and deck are both empty, then the game ends.
     - If taking from the forest:

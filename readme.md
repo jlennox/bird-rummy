@@ -1,7 +1,5 @@
 A bird brained version of rummy.
 
-Work is TBD.
-
 - [Manual](manual.md)
 - [Design notes](design-notes.md)
 - [Printable deck](https://jlennox.github.io/bird-rummy/printable-deck.html)

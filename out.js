@@ -35,7 +35,10 @@ const cardDefinitions = [
         title: "Bird Food",
         type: "Effect",
         count: 4,
-        text: `*Lore*: Take a single bird from opponent's nest or the Forest and place it into your nest.`
+        text: `
+            *Lore*: Take a single bird from opponent's nest or the Forest and place it into your nest.
+
+            It generates ability points as though it was played from your hand.`,
     },
     {
         title: "Nesting Materials",
@@ -48,6 +51,8 @@ const cardDefinitions = [
 
             If all birds in targeted bird group are removed from your nest, place ~ in the Forest.`
         // define "causing _it_" better?
+        // Word heavy, but this card invents counterspells without additional rules?
+        // It's also an effect that stays present in your nest, which is weird.
     },
     {
         title: "Eternal Migration",
@@ -88,12 +93,11 @@ const cardDefinitions = [
     {
         title: "Great Blue Heron",
         type: "Bird",
-        value: 5,
         count: 2,
         textScale: 0.95,
         text: `
-            If you have a !River! in play at the end of the game, ~ counts as two birds for scoring purposes.
-            If you have a !River! in play, ~ generates double the ability points.
+            If you have a !River! in your nest during scoring, ~ counts as two birds when scoring.
+            If you have a !River! in your nest, ~ generates double the ability points.
 
             (2) *Go Fish*: Look at a random card from opponent's hand. You may choose a card in your hand to exchange for the revealed card.
         `
@@ -104,7 +108,6 @@ const cardDefinitions = [
     {
         title: "Scrub Jay",
         type: "Bird",
-        value: 5,
         text: `
             (2) *Squawk*: Place one bird from any nest into the Forest.
             (2) *Forage*: Take one card from the Forest. Place it into either your or your opponent's hand.
@@ -113,12 +116,11 @@ const cardDefinitions = [
     {
         title: "Bushtit",
         type: "Bird",
-        value: 3,
         count: 6,
         text: `
-            ~ must be played in groups of 3 or more.
+            ~s must be played in groups of 3 or more.
 
-            *Flock*: When playing ~, you may play ~ from the Forest as though they are in your hand.
+            *Flock*: When playing ~, you may play ~s from the Forest as though they are in your hand.
 
             (1) *TODO*: Draw 1 card from the Forest or the deck. (TODO: too strong?)
             (3) *TODO*
@@ -127,9 +129,8 @@ const cardDefinitions = [
     {
         title: "Mallard",
         type: "Bird",
-        value: 5,
         text: `
-            *Splashdown Rivalry*: When played, ~ in opponent's nest are placed into the Forest.
+            *Splashdown Rivalry*: When played, ~s in opponent's nest are placed into the Forest.
 
             (2) *Duck and Cover*: Place a Resource from opponent's nest into the Forest.
             (2) *Bottom Feeder*: Place a Resource or Effect card from the Forest into your hand.
@@ -138,7 +139,6 @@ const cardDefinitions = [
     {
         title: "Chickadee",
         type: "Bird",
-        value: 5,
         text: `
             (1) *Investigation*: Look at the top 3 cards of the deck. Place them back in any order.
             (2) *TODO*
@@ -147,7 +147,6 @@ const cardDefinitions = [
     {
         title: "Crow",
         type: "Bird",
-        value: 5,
         text: `
             (2) *Murder*: Place a group (all of one bird type from a single nest) into Heaven.
             (3) *Shiny Trinket*: Place a Resource from opponent's nest into your own.
@@ -156,7 +155,6 @@ const cardDefinitions = [
     {
         title: "Sparrow",
         type: "Bird",
-        value: 5,
         text: `
             (2) *Urban Forager*: Take a !Bird Food! card from the Forest and place it into your hand.
             `
@@ -164,19 +162,29 @@ const cardDefinitions = [
     {
         title: "Cuckoo",
         type: "Bird",
-        value: 10, // Or perhaps go negative?
         text: `
-            *Feed*: At the start of your turn, for every 2 ~s in your nest, discard one card into the Forest.
+            ~ counts as two birds when scoring.
 
-            (2) *Parasite*: ~ is instead placed into opponent's nest.
+            *Feed*: At the start of your turn after drawing, for every 2 ~s in your nest, discard one card into the Forest.
+
+            (2) *Parasite*: All ~s in your nest or being played are instead placed into opponent's nest.
             `
+        // Is this negative effect negative enough? Or is it even negative at all?
+        // Should they deduct from your score instead?
     },
     {
         title: "Mockingbird",
         type: "Bird",
-        value: 0, // intentional 0.
         count: 2,
-        text: `*Mimicry*: Can be played as though it's any other type of bird.`
+        text: `
+            Does not count towards the bird count when scoring (provides no points).
+
+            *Mimicry*: Can be played as though it's any other type of bird in any nest or is currently being played.
+
+            Creates ability points as though it was the other bird type.
+            `
+        // Should this provide 0 points? I want to think that it's a check on how powerful this card is, but I'm not sure.
+        // Might be needless complexity.
     },
 ];
 class DOM {
@@ -245,11 +253,7 @@ class Card {
             return `<span class="card-ref">${DOM.escape(capture)}</span>`;
         });
         const count = def.count ?? (def.type == "Bird" ? 4 : 2);
-        return {
-            ...def,
-            text,
-            count
-        };
+        return { ...def, text, count };
     }
     static processDefinitions(defs) {
         const deck = [];
