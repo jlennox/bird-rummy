@@ -29,21 +29,21 @@ const cardDefinitions = [
     {
         title: "Wrath of the Scrub Jay",
         type: "Effect",
-        text: `*Knocks Stuff Over*: All resource cards in nests are placed in the Forest.`
+        text: `*Knocks Stuff Over*: All resource cards in nests are placed in the Forest.`,
     },
     {
         title: "Bird Food",
         type: "Effect",
         count: 4,
         text: `
-            *Lore*: Take a single bird from opponent's nest or the Forest and place it into your nest.
+            *Lore*: Take a bird from opponent's nest or the Forest and place it into your nest.
 
             It generates ability points as though it was played from your hand.`,
     },
     {
         title: "Nesting Materials",
         type: "Effect",
-        textScale: 0.95,
+        textScale: 1, //0.95,
         text: `
             Place on any bird group in your nest. That bird may no longer be the target of effects or abilities controlled by an opponent.
 
@@ -51,13 +51,13 @@ const cardDefinitions = [
 
             If all birds in targeted bird group are removed from your nest, place ~ in the Forest.`
         // define "causing _it_" better?
-        // Word heavy, but this card invents counterspells without additional rules?
+        // Word heavy, but this card invents counterspells and shroud without additional rules?
         // It's also an effect that stays present in your nest, which is weird.
     },
     {
         title: "Eternal Migration",
         type: "Effect",
-        text: `*H5N1*: Place all cards in the Forest into Heaven. Place the top two cards from the deck into the Forest.`
+        text: `*H5N1*: Place all cards in the Forest into Heaven. Place the top two cards from the deck into the Forest.`,
     },
     {
         title: "Mating Call",
@@ -66,7 +66,7 @@ const cardDefinitions = [
             *Lore*: Place a single bird from the Forest or opponent's nest and place it into your nest. This must be a bird type already in your nest.
 
             Gain ability points as though it was played from your hand.
-            `
+            `,
     },
     {
         title: "Bird Law",
@@ -78,7 +78,7 @@ const cardDefinitions = [
             Can only be used on your own.
             Rule changes can't modify game ending or win conditions.
             Rule changes must be agreed upon by all players.
-        `,
+            `,
     },
     {
         title: "French Fries",
@@ -94,13 +94,13 @@ const cardDefinitions = [
         title: "Great Blue Heron",
         type: "Bird",
         count: 2,
-        textScale: 0.95,
+        textScale: 1, //0.95,
         text: `
             If you have a !River! in your nest during scoring, ~ counts as two birds when scoring.
             If you have a !River! in your nest, ~ generates double the ability points.
 
             (2) *Go Fish*: Look at a random card from opponent's hand. You may choose a card in your hand to exchange for the revealed card.
-        `
+            `,
         // This wording is a bit awkward. I want the river to need to be in play at the end of game for the score
         // doubling, but it sounds like it's a delayed effect and the river has to be in play when played.
         // I've changed it, but now it's too may words :/
@@ -111,7 +111,7 @@ const cardDefinitions = [
         text: `
             (2) *Squawk*: Place one bird from any nest into the Forest.
             (2) *Forage*: Take one card from the Forest. Place it into either your or your opponent's hand.
-            `
+            `,
     },
     {
         title: "Bushtit",
@@ -122,9 +122,9 @@ const cardDefinitions = [
 
             *Flock*: When playing ~, you may play ~s from the Forest as though they are in your hand.
 
-            (1) *TODO*: Draw 1 card from the Forest or the deck. (TODO: too strong?)
+            (1) *TODO*: Draw 1 card from the Forest or deck. (TODO: too strong?)
             (3) *TODO*
-        `
+            `,
     },
     {
         title: "Mallard",
@@ -134,15 +134,15 @@ const cardDefinitions = [
 
             (2) *Duck and Cover*: Place a Resource from opponent's nest into the Forest.
             (2) *Bottom Feeder*: Place a Resource or Effect card from the Forest into your hand.
-            `
+            `,
     },
     {
         title: "Chickadee",
         type: "Bird",
         text: `
             (1) *Investigation*: Look at the top 3 cards of the deck. Place them back in any order.
-            (2) *TODO*
-            `
+            (2) *Cache*: Discard a card from your hand into the Forest. Draw a card from the deck.
+            `,
     },
     {
         title: "Crow",
@@ -150,14 +150,14 @@ const cardDefinitions = [
         text: `
             (2) *Murder*: Place a group (all of one bird type from a single nest) into Heaven.
             (3) *Shiny Trinket*: Place a Resource from opponent's nest into your own.
-            `
+            `,
     },
     {
         title: "Sparrow",
         type: "Bird",
         text: `
             (2) *Urban Forager*: Take a !Bird Food! card from the Forest and place it into your hand.
-            `
+            `,
     },
     {
         title: "Cuckoo",
@@ -165,10 +165,10 @@ const cardDefinitions = [
         text: `
             ~ counts as two birds when scoring.
 
-            *Feed*: At the start of your turn after drawing, for every 2 ~s in your nest, discard one card into the Forest.
+            *Feed*: At the start of your turn after drawing, for every 2 ~s in your nest, discard a card into the Forest.
 
             (2) *Parasite*: All ~s in your nest or being played are instead placed into opponent's nest.
-            `
+            `,
         // Is this negative effect negative enough? Or is it even negative at all?
         // Should they deduct from your score instead?
     },
@@ -182,7 +182,7 @@ const cardDefinitions = [
             *Mimicry*: Can be played as though it's any other type of bird in any nest or is currently being played.
 
             Creates ability points as though it was the other bird type.
-            `
+            `,
         // Should this provide 0 points? I want to think that it's a check on how powerful this card is, but I'm not sure.
         // Might be needless complexity.
     },
@@ -246,10 +246,9 @@ class Card {
             .replaceAll(/\n\s+/g, "\n")
             .replaceAll(/\n([^\n]*)/g, "<p>$1</p>")
             .replaceAll(/!([\w\s]+)!/g, (_, capture) => {
-            const card = allCards.find((c) => c.title === capture);
-            if (card == null) {
+            const card = allCards.find((c) => c.title == capture);
+            if (card == null)
                 throw new Error(`Unknown card: ${capture}`);
-            }
             return `<span class="card-ref">${DOM.escape(capture)}</span>`;
         });
         const count = def.count ?? (def.type == "Bird" ? 4 : 2);

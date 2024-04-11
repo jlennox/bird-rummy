@@ -9,7 +9,6 @@ h1, h2, h3 { padding: 5px 0; }
 
 :root {
 	--outline: 1px;
-	--width: 2.4in;
 }
 
 .card + .card {
@@ -19,8 +18,8 @@ h1, h2, h3 { padding: 5px 0; }
 
 .card {
 	position: relative;
-	width: var(--width);
-	height: 3.4in;
+	width: 2.45in;
+	height: 3.45in;
 	background-repeat: no-repeat;
 	overflow: hidden;
     float: left;
@@ -28,7 +27,7 @@ h1, h2, h3 { padding: 5px 0; }
 
 .card h2 {
 	margin: 0; padding: 0;
-	padding-left: 1em;
+	padding-left: .5em;
 	border-bottom: 1px solid #AAA;
 	border-radius: 5em;
 	font-size: 1.3em;
@@ -38,18 +37,17 @@ h1, h2, h3 { padding: 5px 0; }
 	z-index: 2;
 	background-color: white;
 }
-.card p {
+.card .body {
 	margin: 0 .5em 0 .5em;
 	font-size: 1.1em;
+}
+.card .body * {
+	font-size: 1.05em;
 }
 .card p + p {
 	margin-top: .5em;
 }
-.card em {
-	font-size: 1em;
-}
 .card .ability-cost {
-	font-size: 1em;
 	font-weight: bold;
 	margin-top: -.25em;
 	display: inline-block;
@@ -70,22 +68,6 @@ h1, h2, h3 { padding: 5px 0; }
 	padding-bottom: 0;
 	font-size: 1.5em;
 	font-style: italic;
-}
-.card .value {
-	position: absolute;
-	background-color: white;
-	right: 5px;
-	top: 5px;
-	width: 2em;
-	height: 2em;
-	border: 1px solid #555;
-	border-radius: 100%;
-	text-align: center;
-	line-height: 2em;
-	vertical-align: middle;
-	z-index: 3;
-
-	display: none;
 }
 .card .print-run-note {
     position: absolute;
