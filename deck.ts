@@ -3,6 +3,7 @@ interface IGenericCardDefinition {
     readonly type: "Resource" | "Effect" | "Bird";
     readonly text: string;
     readonly count?: number;
+    readonly textScale?: number;
 }
 
 interface IResourceEffectCardDefinition extends IGenericCardDefinition {
@@ -63,6 +64,7 @@ const cardDefinitions: readonly ICardDefinition[] = [
     {
         title: "Nesting Materials",
         type: "Effect",
+        textScale: 0.95,
         text: `
             Place on any bird group in your nest. That bird may no longer be the target of effects or abilities controlled by an opponent.
 
@@ -75,7 +77,7 @@ const cardDefinitions: readonly ICardDefinition[] = [
     {
         title: "Eternal Migration",
         type: "Effect",
-        text: `*H5N1*: Place all cards in The Forest into Heaven. Place the top two cards from the deck into the Forest.`
+        text: `*H5N1*: Place all cards in the Forest into Heaven. Place the top two cards from the deck into the Forest.`
     },
 
     {
@@ -118,11 +120,16 @@ const cardDefinitions: readonly ICardDefinition[] = [
         type: "Bird",
         value: 5,
         count: 2,
+        textScale: 0.95,
         text: `
-            If there is any !River! in play, ~'s value is 10, and create twice as many ability points when played.
+            If you have a !River! in play at the end of the game, ~ counts as two birds for scoring purposes.
+            If you have a !River! in play, ~ generates double the ability points.
 
             (2) *Go Fish*: Look at a random card from opponent's hand. You may choose a card in your hand to exchange for the revealed card.
         `
+        // This wording is a bit awkward. I want the river to need to be in play at the end of game for the score
+        // doubling, but it sounds like it's a delayed effect and the river has to be in play when played.
+        // I've changed it, but now it's too may words :/
     },
 
     {
@@ -136,7 +143,7 @@ const cardDefinitions: readonly ICardDefinition[] = [
     },
 
     {
-        title: "Bushtits",
+        title: "Bushtit",
         type: "Bird",
         value: 3,
         count: 6,
@@ -151,7 +158,7 @@ const cardDefinitions: readonly ICardDefinition[] = [
     },
 
     {
-        title: "Mallards",
+        title: "Mallard",
         type: "Bird",
         value: 5,
         text: `
@@ -178,12 +185,12 @@ const cardDefinitions: readonly ICardDefinition[] = [
         value: 5,
         text: `
             (2) *Murder*: Place a group (all of one bird type from a single nest) into Heaven.
-            (3) *Shiny Trinket*: Place a resource from opponent's nest into your own.
+            (3) *Shiny Trinket*: Place a Resource from opponent's nest into your own.
             `
     },
 
     {
-        title: "Sparrows",
+        title: "Sparrow",
         type: "Bird",
         value: 5,
         text: `
@@ -203,7 +210,7 @@ const cardDefinitions: readonly ICardDefinition[] = [
     },
 
     {
-        title: "Joker",
+        title: "Mockingbird",
         type: "Bird",
         value: 0, // intentional 0.
         count: 2,
@@ -233,51 +240,77 @@ class DOM {
     }
 }
 
-class Card {
-    constructor(
-        public readonly title: string,
-        public readonly type: string,
-        public readonly text: string,
-        public readonly value?: number,
-    ) {}
+class Card implements IGenericCardDefinition {
+    public readonly title: string;
+    public readonly type: "Resource" | "Effect" | "Bird";
+    public readonly text: string;
+    public readonly count?: number | undefined;
+    public readonly textScale?: number | undefined;
+
+    constructor(def: ICardDefinition) {
+        this.title = def.title;
+        this.type = def.type;
+        this.text = def.text;
+        this.count = def.count;
+        this.textScale = def.textScale;
+    }
 
     public render(): HTMLElement {
+        const bodyScale = this.textScale == null ? "" : `font-size: ${this.textScale}em;`
         return DOM.element("div", "card", `
             <h2>${DOM.escape(this.title)}</h2>
             <div class="type">${DOM.escape(this.type)}</div>
             <div class="image" style="background-image: url('images/black_white/${encodeURI(this.title)}.png');"></div>
-            <div class="body">${this.text}</div>
-            ${this.value == null ? "" : `<div class="value">${this.value}</div>`}
+            <div class="body" style="${bodyScale}">${this.text}</div>
         `);
     }
 
-    public static fromDefinition(def: ICardDefinition): Card {
-        // Hacky code. Needs an actual parser. The initial "\n" is so one-liners get <p> wrapped.
-        return new Card(
-            def.title,
-            def.type,
-            ("\n" + def.text)
-                .replaceAll("~", def.title)
-                .replaceAll("heaven", "Heaven")
-                .replaceAll("forest", "Forest")
-                .replaceAll(/\n+/g, "\n")
-                .replaceAll(/\*(.+?)\*/g, "<em>$1</em>")
-                .replaceAll(/\((\d+)\)/g, "<span class='ability-cost'>$1</span>")
-                .replaceAll(/\n\s+/g, "\n")
-                .replaceAll(/\n([^\n]*)/g, "<p>$1</p>"), //  TODO: Escape HTML :)
-            def.type == "Bird" ? def.value : undefined);
+    public static processDefinition<T extends IGenericCardDefinition>(def: T, allCards: readonly IGenericCardDefinition[]): T {
+        //  TODO: Escape HTML :)
+        const text = ("\n" + def.text)
+            .replaceAll("~", def.title)
+            .replaceAll("heaven", "Heaven")
+            .replaceAll("forest", "Forest")
+            .replaceAll("resource", "Resource")
+            .replaceAll(/\n+/g, "\n")
+            .replaceAll(/\*(.+?)\*/g, "<em>$1</em>")
+            .replaceAll(/\((\d+)\)/g, "<span class='ability-cost'>$1</span>")
+            .replaceAll(/\n\s+/g, "\n")
+            .replaceAll(/\n([^\n]*)/g, "<p>$1</p>")
+            .replaceAll(/!([\w\s]+)!/g, (_, capture) => {
+                const card = allCards.find((c) => c.title === capture);
+                if (card == null) {
+                    throw new Error(`Unknown card: ${capture}`);
+                }
+
+                return `<span class="card-ref">${DOM.escape(capture)}</span>`;
+            });
+
+        const count = def.count ?? (def.type == "Bird" ? 4 : 2);
+
+        return {
+            ...def,
+            text,
+            count
+        };
+    }
+
+    public static processDefinitions(defs: readonly ICardDefinition[]): readonly Card[] {
+        const deck: Card[] = [];
+
+        for (const def of cardDefinitions) {
+            const fixedDef = Card.processDefinition(def, cardDefinitions);
+            for (let i = 0; i < fixedDef.count!; ++i) {
+                // new instance for each one?
+                deck.push(new Card(fixedDef));
+            }
+        }
+
+        return deck;
     }
 }
 
-const deck: Card[] = [];
-
-for (const def of cardDefinitions) {
-    const count = def.count ?? (def.type == "Bird" ? 4 : 2);
-    const card = Card.fromDefinition(def);
-    for (let i = 0; i < count; ++i) {
-        deck.push(card);
-    }
-}
+const deck = Card.processDefinitions(cardDefinitions);
 
 console.log("deck", deck);
 

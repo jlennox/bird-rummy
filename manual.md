@@ -14,7 +14,7 @@ Terms
 - **May**: When an ability or effects says may, ie, "you may," then it is optional.
 - **You/your**: In abilities, represents the player using the ability. In an effect, represents the player who's nest the card is in.
 - **Effect**: An effect can be triggered by an effect card. Effects on effect cards trigger immediately. Text that begins with "At" or "When" on bird and resource cards are also effects. They trigger at the described event.
-- **Discard**: Place a card from your hand into the Forest or Heaven. The effect will describe which. Unless noted, it's the player's choice of what to discard.
+- **Discard**: Target player places a card from their hand into the Forest or Heaven. The effect will describe which. Unless noted, it's the player's choice of what to discard.
 
 Game structure
 ---
@@ -42,8 +42,8 @@ End and win condition
 ---
 The game ends when:
     - A player discard's their last card in hand during the discard phase.
-- When the game ends, the winner is determined by the sum of birds.
-
+- When the game ends, the winner is determined by who has the most birds.
+    - Some birds may have a conditional effect that makes them count as more.
 
 Bird cards
 ---

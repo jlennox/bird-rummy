@@ -19,4 +19,5 @@
     - The value of cards should stay as consistent as possible, allowing users to count cards instead of doing maths.
     - Try and track to the number 10.
         - 5 is a nice number because it's often simpler to work with a 2 divisor of 10. "I have 12 cards at 5 value. 12 div 2 means I have 60 points."
+    - TODO: Maybe just drop the idea that different birds have different value? What does it add?
 - Chickees do a re-order of 3 because the per turn draw is 2. So you can select which 2 the opponent sees, and select 1 for your next draw.
