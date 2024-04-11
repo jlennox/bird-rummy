@@ -17,22 +17,28 @@
                 if (a.title != b.title) return a.title > b.title ? 1 : -1;
                 return 0;
             });
-        const cardsPerWidth = Math.floor(paperSize.width / cardSize.width);
-        const cardsPerHeight = Math.floor(paperSize.height / cardSize.height);
-        const cardsPerPage = cardsPerWidth * cardsPerHeight;
-        const printRunNote = document.createElement("div");
-        printRunNote.className = "print-run-note";
-        printRunNote.innerText = "alpha 4";
+        const cardsPerRow = Math.floor(paperSize.width / cardSize.width);
+        const cardsPerColumn = Math.floor(paperSize.height / cardSize.height);
+        const cardsPerPage = cardsPerRow * cardsPerColumn;
+        const printRunNote = DOM.element("div", "print-run-note", "alpha 4");
+
+        const pageElement = DOM.element("div", "page", "");
+        pageElement.style.paddingLeft = ((paperSize.width - cardSize.width * cardsPerRow) / 2) + "in";
+        pageElement.style.paddingTop = ((paperSize.height - cardSize.height * cardsPerColumn) / 2) + "in";
+
+        const pageRowElement = DOM.element("div", "page-row", "");
+
         for (let i = 0; i < cards.length;) {
-            const page = document.createElement("div");
-            page.className = "page";
-            page.style.paddingLeft = ((paperSize.width - cardSize.width * cardsPerWidth) / 2) + "in";
-            page.style.paddingTop = ((paperSize.height - cardSize.height * cardsPerHeight) / 2) + "in";
-            for (let j = 0; j < cardsPerPage && i < cards.length ;++i, ++j) {
-                const card = cards[i]
-                const element = card.render();
-                element.appendChild(printRunNote.cloneNode(true));
-                page.appendChild(element);
+            const page = pageElement.cloneNode(true);
+            for (let j = 0; j < cardsPerPage && i < cards.length;) {
+                const row = pageRowElement.cloneNode(true);
+                for (let j2 = 0; j2 < cardsPerRow && j < cardsPerPage && i < cards.length ;++i, ++j, ++j2) {
+                    const card = cards[i]
+                    const element = card.render();
+                    element.appendChild(printRunNote.cloneNode(true));
+                    row.appendChild(element);
+                }
+                page.appendChild(row);
             }
             document.body.appendChild(page);
         }

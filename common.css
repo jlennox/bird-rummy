@@ -1,23 +1,26 @@
-* { box-sizing: border-box; margin: 0; padding: 0; font-size: 13px; }
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-size: 13px;
+}
 
 h1, h2, h3 { padding: 5px 0; }
 
 :root {
 	--outline: 1px;
 	--width: 2.4in;
-	--wheel-size: 2.3in;
-	--wheel-center-x: 1.45in;
-	--wheel-center-y: calc(1.3in + 5px);
-	--wheel-center-size: .25in;
-	--fold-height: .25in;
-	--window-size: .25in;
 }
+
+.card + .card {
+	border-left: var(--outline) dashed #DDD;
+}
+.page-row { border: var(--outline) dashed #DDD; }
 
 .card {
 	position: relative;
 	width: var(--width);
 	height: 3.4in;
-	border: var(--outline) dashed #DDD;
 	background-repeat: no-repeat;
 	overflow: hidden;
     float: left;
@@ -48,6 +51,7 @@ h1, h2, h3 { padding: 5px 0; }
 .card .ability-cost {
 	font-size: 1em;
 	font-weight: bold;
+	margin-top: -.25em;
 	display: inline-block;
 	vertical-align: middle;
 	line-height: 1em;
@@ -60,6 +64,7 @@ h1, h2, h3 { padding: 5px 0; }
 .card .type {
 	position: absolute;
 	right: .5em;
+	margin-top: .1em;
 	font-weight: bold;
 	text-align: right;
 	padding-bottom: 0;
@@ -99,52 +104,14 @@ h1, h2, h3 { padding: 5px 0; }
 	background-position: left center;
 }
 
-.cost {
-	float: right;
-	font-size: .8em;
-	padding-bottom: 10px;
-}
-
-.title-2 {
-	font-weight: bold;
-	font-size: 1em;
-	padding: 5px 5px 0 5px;
-}
-.cost-2 {
-	float: right;
-}
-
-.type {
-	padding: 5px;
-}
-
-.oracle {
-	white-space: pre-wrap;
-}
-
-.pt {
-	position: absolute;
-	bottom: 5px;
-	right: 5px;
-	font-weight: bold;
-	font-size: 1.5em;
-}
-
-.circle {
-	border: 1px solid lightgrey;
-	border-radius: 50%;
-	width: 1em;
-	height: 1em;
-	display: inline-block;
-	text-align: center;
-	vertical-align: middle;
-	line-height: 1em;
-	text-indent: 0;
-}
-
 .page {
     height: 11in;
     width: 8.5in;
+}
+
+.page-row {
+	clear: both;
+	float: left;
 }
 
 .page-break {
