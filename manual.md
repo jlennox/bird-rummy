@@ -3,6 +3,25 @@ Bird Rummy
 
 Bird Rummy is a card game for 2 players that borrows game mechanics from rummy.
 
+Brief how to play
+---
+Shuffle deck. Place top 2 cards into a discard pile (the "Forest"). Each player is given a 5 card hand.
+
+Players take turns. At the start of each turn, the player draws 2 cards from the draw pile OR takes a run (sequentially
+from the top down to a target card) of cards from the discard pile. If cards are taken from the Forest, then the bottom
+most card pickup must be the next card played. Person who plays first only draws 1 card on their first turn.
+
+Birds can be played in pairs or better. Each bird being played gives one effect points. Effect points can only be used
+on the bird card that is being played. Effects and their costs are in circled numbers on the bird cards.
+
+At the end of the turn, the player must discard one card to the Forest. Failure to be able to discard a card means the
+game continues on, and they play their next turn as normal.
+
+The game ends when someone ends their turn and discards their last in-hand card. It has to be at turn end, a discard
+effect causing a player to discard their last card does not count.
+
+The score is the number of birds you have in play, minus the number of birds you have in your hand. Highest score wins.
+
 Terms
 ---
 - **Nest**: The player's playfield. Each player has a nest. Players play their cards into their nest.
@@ -43,7 +62,8 @@ End and win condition
 ---
 The game ends when:
     - A player discard's their last card in hand during the discard phase.
-- When the game ends, the winner is determined by who has the most birds.
+        - A discard effect causing a player to discard their last card does not count.
+- When the game ends, the winner is determined by who has the most birds, deducting the number of birds in hand.
     - Some birds may have a conditional effect that makes them count as more.
 
 Bird cards

@@ -1,4 +1,6 @@
 - Behaviors of the specific species is attempted to be reflected in the cards mechanics.
+- Do terms like "the Forest" add anything beyond confusion? People much more instinctively know what a discard pile is.
+    - It does make a lot of card behaviors make more sense.
 - Avoid sending birds to Heaven. Dead birds make me sad.
     - Birds should leave a nest to go to the Forest or the other nest.
 - Birds are wild animals. These are not the player's pets. They want to and should move between play areas frequently.
@@ -6,19 +8,17 @@
 - Never have the ability of looking at opponent's hand. A big aspect of rummy is secrecy.
 - Considering having multiple cards for the same bird. IE, have 2 types of scrub jays, and the player can choice the abilities on any of the ones being played or in their nest.
 - 60'ish card deck should provide for reasonable game length, not need to dig for duplicate birds for too long, and not over tax players memory.
+    - The bird to non-bird ratio might need tuning.
 - The games are intended to be casually competitive and not much longer than a normal rummy game, 10 - 15 minutes.
 - "Cuckoo" is interesting.
     - Someone could have one in hand. The other person plays a pair and infects the other player. They then play their one and can pass them back.
     - Alternatively, they're high value, so perhaps pocket a pair until close to the end of the game, and do not pass them.
     - Perhaps a better mechanic could be to make them negative value?
-- Keep a consistent writing tone and style.
-    - Uh, what?
-    - _Sometimes_ leverage what's common magic the gathering wording, to help onboard those players easier.
+- Keep a consistent writing tone, syntax, and metaphors.
+    - _Sometimes_ leverage what's common magic the gathering wording, to help onboard those players easier. Don't use their game mechanic terms, even if this does technically have a counterspell.
     - "Place", "Discard", and some others should all be consistently used, but not all words need a definition in the manual.
-- Easier maths:
-    - The value of cards should stay as consistent as possible, allowing users to count cards instead of doing maths.
-    - Try and track to the number 10.
-        - 5 is a nice number because it's often simpler to work with a 2 divisor of 10. "I have 12 cards at 5 value. 12 div 2 means I have 60 points."
-    - TODO: Maybe just drop the idea that different birds have different value? What does it add?
 - Chickees do a re-order of 3 because the per turn draw is 2. So you can select which 2 the opponent sees, and select 1 for your next draw.
+    - But they know you reordered the cards. So perhaps they will draw from the discard pile.
+    - BUT you know they may draw from the discard pile instead, so you put the good cards on top.
+    - BUT ....
 - Maybe have an effect or ability to re-order the Forest?

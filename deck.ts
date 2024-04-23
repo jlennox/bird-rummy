@@ -60,7 +60,9 @@ const cardDefinitions: readonly ICardDefinition[] = [
         text: `
             *Lore*: Take a bird from opponent's nest or the Forest and place it into your nest.
 
-            It generates ability points as though it was played from your hand.`,
+            It generates ability points as though it was played from your hand.
+            `,
+            // Change to Gust? IE, the bird gets blown over.
     },
 
     {
