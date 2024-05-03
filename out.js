@@ -165,14 +165,10 @@ const cardDefinitions = [
         title: "Cuckoo",
         type: "Bird",
         text: `
-            ~ counts as two birds when scoring.
-
-            *Feed*: At the start of your turn after drawing, for every 2 ~s in your nest, discard a card into the Forest.
+            Each ~ deduct two from your score when scoring, instead of giving one.
 
             (2) *Parasite*: All ~s in your nest or being played are instead placed into opponent's nest.
             `,
-        // Is this negative effect negative enough? Or is it even negative at all?
-        // Should they deduct from your score instead?
     },
     {
         title: "Mockingbird",

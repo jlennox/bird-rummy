@@ -1,73 +1,74 @@
 * {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-	font-size: 13px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
 }
 
 h1, h2, h3 { padding: 5px 0; }
 
 :root {
-	--outline: 1px;
+    --outline: 1px;
 }
 
 .card + .card {
-	border-left: var(--outline) dashed #DDD;
+    border-left: var(--outline) dashed #DDD;
 }
 .page-row { border: var(--outline) dashed #DDD; }
 
 .card {
-	position: relative;
-	width: 2.45in;
-	height: 3.45in;
-	background-repeat: no-repeat;
-	overflow: hidden;
+    position: relative;
+    width: 2.45in;
+    height: 3.45in;
+    background-repeat: no-repeat;
+    overflow: hidden;
     float: left;
+    page-break-inside: avoid;
 }
 
 .card h2 {
-	margin: 0; padding: 0;
-	padding-left: .5em;
-	border-bottom: 1px solid #AAA;
-	border-radius: 5em;
-	font-size: 1.3em;
-	text-indent: .2em;
-	white-space: nowrap;
-	position: relative;
-	z-index: 2;
-	background-color: white;
+    margin: 0; padding: 0;
+    padding-left: .5em;
+    border-bottom: 1px solid #AAA;
+    border-radius: 5em;
+    font-size: 1.3em;
+    text-indent: .2em;
+    white-space: nowrap;
+    position: relative;
+    z-index: 2;
+    background-color: white;
 }
 .card .body {
-	margin: 0 .5em 0 .5em;
-	font-size: 1.1em;
+    margin: 0 .5em 0 .5em;
+    font-size: 1.1em;
 }
 .card .body * {
-	font-size: 1.05em;
+    font-size: 1.05em;
 }
 .card p + p {
-	margin-top: .5em;
+    margin-top: .5em;
 }
 .card .ability-cost {
-	font-weight: bold;
-	margin-top: -.25em;
-	display: inline-block;
-	vertical-align: middle;
-	line-height: 1em;
-	width: 1em;
-	height: 1em;
-	text-align: center;
-	border: 1px solid #555;
-	border-radius: 100%;
+    font-weight: bold;
+    margin-top: -.25em;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1em;
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    border: 1px solid #555;
+    border-radius: 100%;
 }
 .card .type {
-	position: absolute;
-	right: .5em;
-	margin-top: .1em;
-	font-weight: bold;
-	text-align: right;
-	padding-bottom: 0;
-	font-size: 1.5em;
-	font-style: italic;
+    position: absolute;
+    right: .5em;
+    margin-top: .1em;
+    font-weight: bold;
+    text-align: right;
+    padding-bottom: 0;
+    font-size: 1.5em;
+    font-style: italic;
 }
 .card .print-run-note {
     position: absolute;
@@ -78,16 +79,16 @@ h1, h2, h3 { padding: 5px 0; }
     color: #AAA;
 }
 .card .image {
-	margin: 0 .5em;
-	height: 130px;
-	width: calc(100% - 2em);
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: left center;
+    margin: 0 .5em;
+    height: 130px;
+    width: calc(100% - 2em);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
 }
 .card .card-ref {
-	font-family: monospace;
-	font-size: 1em;
+    font-family: monospace;
+    font-size: 1em;
 }
 
 .page {
@@ -96,18 +97,18 @@ h1, h2, h3 { padding: 5px 0; }
 }
 
 .page-row {
-	clear: both;
-	float: left;
+    clear: both;
+    float: left;
 }
 
 .page-break {
-	page-break-after: always;
-	margin-top: 20px;
-	margin-left: 20px;
+    page-break-after: always;
+    margin-top: 20px;
+    margin-left: 20px;
 }
 
 @media screen {
-	.page-break + .page-break {
-		margin-top: 20px;
-	}
+    .page-break + .page-break {
+        margin-top: 20px;
+    }
 }
