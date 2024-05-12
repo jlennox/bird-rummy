@@ -1,0 +1,53 @@
+- ✅ Bird law should switch hands? Maybe be a chaos orb? Maybe be both?
+- ✅ French fries is an absolute mess. Can only target your nest.
+- ✅ Bird bath needs to mention that work on any card in your nest.
+- ✅ Used effects go to heaven.
+- Bushtits
+    - Bushtits force you to draw?
+    - Maybe bushtits should clarify that when playing them from forest they're basically drawn.
+- Mockingbirds
+    - Mockingbirds will have all effects of card.
+    - Mockingbird MUST BE a mimic. They take on the type. When stolen (lured) it must take on the ability of a bird in that nest. If no birds in the nest or for it to target causes it to go to the forest.
+- Cuckoos do not deduct two when in your hand. Just one. If in your hand maybe add one?
+    - ✅ More play testing led us to beleive they should always deduct 2. Simpler rules.
+- ✅ Lore should say lure.
+- ✅ Bird food doesn't need pairs.
+- Cool combo. Scrub jay opponents or yours nest, then play another to reuse it
+- Wrath of scrub jay might be too weak? Opponent will scoop them all.
+- Nesting materials is too much like magic and not enough like rummy.
+    - ✅ Lets instead have a second well of "advanced" cards to add to the deck.
+- Maybe chickadees cache should let you peek the top card then decide? But she likes it how it is because it's a risk. Maybe make that a bushtits todo?
+- Mallards
+    - ✅ Mallards create a game loop. Mallards place other mallards into heaven?
+- Maybe call ability points feathers? Ability points and score are confusing.
+- ✅ Maybe draw more on opening draws? First turn go outs are too real with resources.
+     - ✅ Made it 6 instead of 5.
+- Ability points are the count of that bird type you played that turn.
+- Maybe Heaven should instead be called Sky?
+    - I dislike this because Crows should murder stuff.
+    - And if Birds can come back from the Forest, they logically can come back from the Sky.
+    - Use Effects going to the Sky doesn't make sense, Heaven also does not make sense, but it makes less less sense...
+    - ❓Maybe just call it removed from game...?
+- Don't try and control luck...?
+    - Ya, first turn outs should be considered OK. They exist in rummy after all.
+    - But effect/resources should not be too predominate in the deck otherwise early outs would be too common, and that's not fun.
+- Sparrow sucks.
+    - ✅ Sparrow should have an effect that subtle references pirates?
+    - ✅ Sparrow can take bird food from heaven...? I hate that. It violates the one rule of heaven. Take it from the deck instead? Reveal it.
+- When deck runs out, game ends.
+    - ✅ Lets make it so you shuffle the Forest back in, but if both are empty, game ends. The deck seems like it can empty pretty fast.
+- ✅ You may look at your hand before deciding if you play or stay. And can see the flop.
+- Note on resources that they don't count as points?
+    - ❌ Eh.
+- ✅ Bird feeder -- I don't want to find a coin and keep flipping it.
+    - ✅ Nuked from game for the time being.
+    - ❓ Make it have what River does? But I love heron gets an ability from River.
+- ✅ Effects can only be played on your turn.
+    - Notably reduces complexity.
+- ✅ Less copies of effects.
+    - We already default to 2 of each.
+    - ✅ Is eternal migration fun? Let's have 1.
+- Bird bath you can use once during your turn. So you get 1 from playing a bird, one from bath, to get two. But you can leak that same turn.
+- Ability points stack and go away at the end of turn?
+- Chickadee plus eternal migration is a solid combo.
+- If I do the chickadee effect but they have a river. Omg.

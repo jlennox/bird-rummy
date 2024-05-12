@@ -12,8 +12,7 @@
 - The games are intended to be casually competitive and not much longer than a normal rummy game, 10 - 15 minutes.
 - "Cuckoo" is interesting.
     - Someone could have one in hand. The other person plays a pair and infects the other player. They then play their one and can pass them back.
-    - Alternatively, they're high value, so perhaps pocket a pair until close to the end of the game, and do not pass them.
-    - Perhaps a better mechanic could be to make them negative value?
+        - This makes keeping a pocket Cuckoo a strategy, but a risky one, becuase they deduct more points when it hand, too.
 - Keep a consistent writing tone, syntax, and metaphors.
     - _Sometimes_ leverage what's common magic the gathering wording, to help onboard those players easier. Don't use their game mechanic terms, even if this does technically have a counterspell.
     - "Place", "Discard", and some others should all be consistently used, but not all words need a definition in the manual.
@@ -22,3 +21,9 @@
     - BUT you know they may draw from the discard pile instead, so you put the good cards on top.
     - BUT ....
 - Maybe have an effect or ability to re-order the Forest?
+- Don't try too hard to control luck.
+    - First turn outs are a thing that happen in 5 card draw rummy.
+    - First turn outs are OK, but should be uncommon.
+        - Part of controlling for this is amount of birds vs resources/effects.
+- Coin flips suck.
+    - They make great flavor, but you now need something external to the game to play it.

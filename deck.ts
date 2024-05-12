@@ -4,6 +4,7 @@ interface IGenericCardDefinition {
     readonly text: string;
     readonly count?: number;
     readonly textScale?: number;
+    readonly advanced?: boolean;
 }
 
 interface IResourceEffectCardDefinition extends IGenericCardDefinition {
@@ -16,17 +17,21 @@ interface IBirdCardDefinition extends IGenericCardDefinition {
 
 type ICardDefinition = IResourceEffectCardDefinition | IBirdCardDefinition;
 
+const terms = {
+    Lure: "Take a single bird from opponent's nest or the Forest and place it into your nest",
+};
+
 const cardDefinitions: readonly ICardDefinition[] = [
     // == Resources
     {
         title: "Bird Bath",
         type: "Resource",
         text: `
-            *Morning Bath*: You may gain 1 ability point at the start of each turn.
+            *Morning Bath*: At the start of each turn, you may gain 1 ability point.
 
             *Leak*: Place ~ in heaven to gain 2 ability points.
 
-            The ability points may be spent on the abilities of your choice of any bird in your nest or being played.
+            Ability points gained this way may be spent on the abilities of your choice of any bird in your nest or being played. Unused points are lost at the end of turn.
             `, // Call "Leak" "Knock Over*" instead?
     },
 
@@ -36,13 +41,19 @@ const cardDefinitions: readonly ICardDefinition[] = [
         text: `*Fish*: At the start of your turn, you may draw a card from the deck.`,
     },
 
-    {
-        title: "Bird Feeder",
-        type: "Resource",
-        text: `
-            *Lore*: At the start of your turn, flip a coin. If heads, take any single bird from opponent's nest and place it into yours.
+    // {
+    //     title: "Bird Feeder",
+    //     type: "Resource",
+    //     text: `
+    //         *Lure*: At the start of your turn, flip a coin. If heads, take any single bird from opponent's nest and place it into yours.
+    //
+    //         At anytime if an opponent does not have any birds in their nest, place ~ into Heaven.`,
+    // },
 
-            At anytime if an opponent does not have any birds in their nest, place ~ into Heaven.`,
+    {
+        title: "Seasonal Winds",
+        type: "Resource",
+        text: `*Gust*: At the start of your turn, you may place a card from the Forest into opponent's hand.`
     },
 
     // == Effects
@@ -51,25 +62,26 @@ const cardDefinitions: readonly ICardDefinition[] = [
         title: "Wrath of the Scrub Jay",
         type: "Effect",
         text: `*Knocks Stuff Over*: All resource cards in nests are placed in the Forest.`,
-    },
+    }, // TODO: This card isn't great. You remove all resources, then your opponent gets a strong scoop from the Forest next turn.
 
     {
         title: "Bird Food",
         type: "Effect",
         count: 4,
         text: `
-            *Lore*: Take a bird from opponent's nest or the Forest and place it into your nest.
+            *Lure*: ${terms.Lure}. A bird pair is not required.
 
             It generates ability points as though it was played from your hand.
             `,
             // Change to Gust? IE, the bird gets blown over.
     },
 
-    {
-        title: "Nesting Materials",
-        type: "Effect",
-        textScale: 1, //0.95,
-        text: `
+     {
+         title: "Nesting Materials",
+         type: "Effect",
+         textScale: 1, //0.95,
+         advanced: true,
+         text: `
             Place on any bird group in your nest. That bird may no longer be the target of effects or abilities controlled by an opponent.
 
             This effect may be played in response to an effect or ability, causing it to have no effect.
@@ -78,11 +90,12 @@ const cardDefinitions: readonly ICardDefinition[] = [
             // define "causing _it_" better?
             // Word heavy, but this card invents counterspells and shroud without additional rules?
             // It's also an effect that stays present in your nest, which is weird.
-    },
+     },
 
     {
         title: "Eternal Migration",
         type: "Effect",
+        count: 1,
         text: `*H5N1*: Place all cards in the Forest into Heaven. Place the top two cards from the deck into the Forest.`,
     },
 
@@ -90,7 +103,7 @@ const cardDefinitions: readonly ICardDefinition[] = [
         title: "Mating Call",
         type: "Effect",
         text: `
-            *Lore*: Place a single bird from the Forest or opponent's nest and place it into your nest. This must be a bird type already in your nest.
+            *Lure*: ${terms.Lure}. This must be a bird type already in your nest.
 
             Gain ability points as though it was played from your hand.
             `,
@@ -100,23 +113,19 @@ const cardDefinitions: readonly ICardDefinition[] = [
         title: "Bird Law",
         type: "Effect",
         count: 1,
+        advanced: true,
         text: `
-            You make up a new rule that will be in effect until your next turn.
-
-            Can only be used on your own.
-            Rule changes can't modify game ending or win conditions.
-            Rule changes must be agreed upon by all players.
+            Pick one:
+            - Switch hands with opponent.
+            - Place all cards in the Forest into Heaven.
+            - Flip ~ like a coin using your thumb. It must go at least 10 inches into the air. Place any card it touches into Heaven.
             `,
     },
 
     {
         title: "French Fries",
         type: "Effect",
-        text: `
-            Activate the ability of any bird in any nest without paying the cost.
-
-            If the bird is in your opponent's nest, it effects them as though they activated it.
-            `,
+        text: `Activate an ability of any bird in your nest without paying the cost.`,
     },
 
     // == Birds
@@ -164,11 +173,12 @@ const cardDefinitions: readonly ICardDefinition[] = [
         title: "Mallard",
         type: "Bird",
         text: `
-            *Splashdown Rivalry*: When played, ~s in opponent's nest are placed into the Forest.
+            *Splashdown Rivalry*: When played, ~s in opponent's nest are placed into Heaven.
 
             (2) *Duck and Cover*: Place a Resource from opponent's nest into the Forest.
             (2) *Bottom Feeder*: Place a Resource or Effect card from the Forest into your hand.
             `,
+            // I dislike that they go to Heaven, but placing into the Forest created a game play loop.
     },
 
     {
@@ -193,7 +203,8 @@ const cardDefinitions: readonly ICardDefinition[] = [
         title: "Sparrow",
         type: "Bird",
         text: `
-            (2) *Urban Forager*: Take a !Bird Food! card from the Forest and place it into your hand.
+            (2) *Urban Forager*: Search the deck for a !Bird Food! card, show opponent, and place it into your hand. Shuffle deck afterward.
+            (2) *Clever Buccaneer*: Take one card at random from opponent's hand.
             `,
     },
 
@@ -201,7 +212,7 @@ const cardDefinitions: readonly ICardDefinition[] = [
         title: "Cuckoo",
         type: "Bird",
         text: `
-            Each ~ deduct two from your score when scoring, instead of giving one.
+            ~ add no points when scoring. Instead, each ~ in hand or in your nest deducts 2 points.
 
             (2) *Parasite*: All ~s in your nest or being played are instead placed into opponent's nest.
             `,
@@ -211,16 +222,37 @@ const cardDefinitions: readonly ICardDefinition[] = [
         title: "Mockingbird",
         type: "Bird",
         count: 2,
+        textScale: .95,
         text: `
-            Does not count towards the bird count when scoring (provides no points).
+            *Mimicry*: When played, select a bird in your nest or currently being played.
 
-            *Mimicry*: Can be played as though it's any other type of bird in any nest or is currently being played.
+            ~ is considered that bird type for all abilities, effects, and scoring.
 
-            Creates ability points as though it was the other bird type.
+            If moved directly to another nest, that nest's owner must select a bird from their nest to mimic.
+
+            If there's no targets or there's no birds of the mimicked type in the same nest, then place ~ the Forest.
             `,
 
             // Should this provide 0 points? I want to think that it's a check on how powerful this card is, but I'm not sure.
             // Might be needless complexity.
+    },
+
+    {
+        title: "Northern Flicker",
+        type: "Bird",
+        text: `
+            (2) *TODO*:
+            `,
+    },
+
+    {
+        title: "Towhee",
+        type: "Bird",
+        text: `
+            *Bully*: When played, place any Sparrows in opponent's nest are placed into the Forest.
+
+            (2) *Dirt Dance*: Place 2 cards from the Forest into opponent's hand, and 1 into yours.
+            `,
     },
 ];
 

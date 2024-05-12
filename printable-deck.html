@@ -20,7 +20,7 @@
         const cardsPerRow = Math.floor(paperSize.width / cardSize.width);
         const cardsPerColumn = Math.floor(paperSize.height / cardSize.height);
         const cardsPerPage = cardsPerRow * cardsPerColumn;
-        const printRunNote = DOM.element("div", "print-run-note", "alpha 5");
+        const printRunNote = DOM.element("div", "print-run-note", "beta 1");
 
         const pageElement = DOM.element("div", "page", "");
         pageElement.style.paddingLeft = ((paperSize.width - cardSize.width * cardsPerRow) / 2) + "in";
